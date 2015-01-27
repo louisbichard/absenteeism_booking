@@ -33,19 +33,30 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Mudano recruitment demo</h2>
-                <h4> You are logged in as: {{user.first_name}} {{user.last_name}}</h4>
+                <h4> You are logged in as: {{user.name}}</h4>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <ul>
-                    <li>
-                        <a href="#timetable"> Timetable</a>
-                    </li>
-                    <li>
-                        <a href="#user"> Users</a>
-                    </li>
-                </ul>
+
+                <div class="widget">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li>
+                            <a href="#timetable"> Timetable</a>
+                        </li>
+                        <li>
+                            <a href="#user"> Users</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="widget">
+                    <h3> Key </h3>
+                    <p class="color-value-V"> Vacation </p>
+                    <p class="color-value-P"> Public Holiday </p>
+                    <p class="color-value-T"> Training </p>
+                </div>
             </div>
             <div class="col-md-9">
                 <div ng-view></div>
@@ -74,6 +85,8 @@
     <!-- ================ANGULAR PLUGINS================ -->
     <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
     <!-- ================CONTROLLERS================ -->
     <script type="text/javascript" src="scripts/main.controller.js"></script>
@@ -82,6 +95,7 @@
 
     <!-- ================SERVICES================ -->
     <script type="text/javascript" src="scripts/bookings.service.js"></script>
+    <script type="text/javascript" src="scripts/user.service.js"></script>
     <script type="text/javascript" src="scripts/database.service.js"></script>
 
 </body>

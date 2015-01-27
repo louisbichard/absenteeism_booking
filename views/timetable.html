@@ -1,8 +1,56 @@
-<h3> Key </h3>
+filters: {{filter}}
 
-<p class="color-value-V"> Vacation </p>
-<p class="color-value-P"> Public Holiday </p>
-<p class="color-value-T"> Training </p>
+<div class="row">
+    <div class="col-md-12">
 
 
-<div ui-calendar="uiConfig.calendar" ng-model="eventSources">
+        <accordion>
+            <accordion-group heading="Add event">
+                <div class="row">
+                    <div class="col-md-6">
+                        <select class="form-control">
+                            <option> vacation (V) </option>
+                            <option> vacation (P) </option>
+                            <option> vacation (T) </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-control">
+                            <option> AM </option>
+                            <option> PM </option>
+                        </select>
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+
+            <label> Filter by user: </label>
+
+            <div ng-repeat="test in getNumber(filterUserNumber) track by $index">
+                <select placeholder="Choose user" ng-change="updateWithFilter()" ng-model="filter.user[$index]" class="form-control" ng-model="correctlySelected" ng-options="opt as opt.name for opt in users">
+                </select>
+                <button class="form-control" ng-click="removeUserFilterField($index)"> Remove field </button>
+                <br>
+            </div>
+
+            <button class="form-control" ng-click="updateUserNumberFilter()"> Add field </button>
+
+
+            <br>
+
+            <button ng-click="clearFilters()" class="form-control btn-info">
+                <i class="fa fa-trash"></i> Clear filters
+            </button>
+            <br>
+            <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar">
+            </div>
+        </div>
+    </div>
+</div>

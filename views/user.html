@@ -1,10 +1,4 @@
 <h1> USER HTML </h1>
 
-<p> You are currently logged in as: </p>
-<p> {{user.first_name}} {{user.last_name}} </p>
-
-<p ng-repeat="user in users"> {{user}} </p>
-
-
-<select class="form-control" ng-model="correctlySelected" ng-options="opt as opt.name for opt in users">
+<select ng-model="selectedUser" class="form-control" ng-model="correctlySelected" ng-options="opt as opt.name for opt in users">
 </select>

@@ -1,8 +1,8 @@
-APP.controller('mainController', function($scope, bookingService) {
+APP.controller('mainController', function($scope, bookingService, userService) {
 
-    $scope.user = {
-        first_name: "Bob",
-        last_name: "McFakeName"
-    };
+    $scope.$on('user-changed', function(event, args) {
+        $scope.user = userService.get();
+        console.log('recieve change');
+    });
 
 });

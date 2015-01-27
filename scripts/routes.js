@@ -2,9 +2,8 @@ APP.config(function($routeProvider) {
     $routeProvider
 
         .when('/', {
-
-        templateUrl: '../views/timetable.html'
-            //  controller: 'userController'
+        templateUrl: '../views/timetable.html',
+        controller: 'timetableController'
     })
 
     .when('/timetable', {
