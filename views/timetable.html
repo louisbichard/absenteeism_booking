@@ -1,11 +1,21 @@
-filters: {{filter}}
+<!-- <div class="row" ng-hide="current_logged_in_user">
+    <div class="col-md-12">
+        <div class="widget">
+            <h4> No user logged in. Please login on the <a href="#user"> user page</a> </h4>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div ng-show="current_logged_in_user"> -->
 
 <div class="row">
     <div class="col-md-12">
-
-
         <accordion>
-            <accordion-group heading="Add event">
+            <accordion-group>
+                <accordion-heading>
+                    Add event <i class="fa fa-plus"></i>
+                </accordion-heading>
+
                 <div class="row">
                     <div class="col-md-6">
                         <select class="form-control">
@@ -28,28 +38,69 @@ filters: {{filter}}
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="widget">
 
-            <label> Filter by user: </label>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <h4> Time of day</h4>
+                    <label>AM</label>
+                    <input ng-model="filter.unit.am" type="checkbox" name="vehicle" value="Bike" selected>
+                    <br>
+                    <label>PM</label>
+                    <input ng-model="filter.unit.pm" type="checkbox" name="vehicle" value="Bike">
 
-            <div ng-repeat="test in getNumber(filterUserNumber) track by $index">
-                <select placeholder="Choose user" ng-change="updateWithFilter()" ng-model="filter.user[$index]" class="form-control" ng-model="correctlySelected" ng-options="opt as opt.name for opt in users">
-                </select>
-                <button class="form-control" ng-click="removeUserFilterField($index)"> Remove field </button>
-                <br>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <h4> Select users</h4>
+                    <div ng-repeat="test in getNumber(filterUserNumber) track by $index">
+                        <form class="form-inline">
+                            <select placeholder="Choose user" ng-change="newUserSelected()" ng-model="filter.user[$index]" class="form-control" ng-model="correctlySelected" ng-options="opt as opt.name for opt in users">
+                            </select>
+                            <button class="form-control btn-danger" ng-click="removeUserFilterField($index)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                        <br>
+                    </div>
+                    <form class="form-inline">
+                        <button class="form-control btn-success" ng-click="updateUserNumberFilter()"> Add field </button>
+                        <button ng-click="clearFilters()" class="form-control btn-info">
+                            <i class="fa fa-trash"></i> Clear filters
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <button class="form-control" ng-click="updateUserNumberFilter()"> Add field </button>
+        </div>
 
-
-            <br>
-
-            <button ng-click="clearFilters()" class="form-control btn-info">
-                <i class="fa fa-trash"></i> Clear filters
-            </button>
-            <br>
+    </div>
+    <div class="col-md-8">
+        <div class="widget">
+            <h4> You are logged in as: {{current_logged_in_user.name}}</h4>
             <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar">
+            </div>
+            <!-- KEY FOR THE CALENDAR -->
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="widget">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="color-value-V"> Vacation </p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="color-value-P"> Public Holiday </p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="color-value-T"> Training </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

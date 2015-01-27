@@ -9,14 +9,17 @@ APP.service("bookingService", function(databaseService) {
         var y = date_split[2];
 
         var color = "red";
-
         return {
             name: curr.name,
             title: curr.name + "(" + curr.unit + ")",
             // NOTE: SUBTRACT ONE FROM THE MONTH AS JANUARY IS CONSIDERED 00 NOT 01
             start: new Date(y, m - 1, d),
             end: new Date(y, m - 1, d),
-            className: ['color-value-' + curr.value, 'calendar-cell'],
+            className: [
+                'color-value-' + curr.value,
+                'calendar-cell',
+                'calendar-unit-' + curr.unit
+            ],
         };
     };
 

@@ -1,5 +1,5 @@
 APP.service("userService", function() {
-    var user = {};
+    var user;
 
     this.set = function(obj) {
         user = obj;

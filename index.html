@@ -32,34 +32,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Mudano recruitment demo</h2>
-                <h4> You are logged in as: {{user.name}}</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
+                <h2 class="text-center">Mudano Recruitment Demo</h2>
+                <div class="row">
 
-                <div class="widget">
-                    <h3>Navigation</h3>
-                    <ul>
-                        <li>
-                            <a href="#timetable"> Timetable</a>
-                        </li>
-                        <li>
+                    <div class="col-md-4">
+                        <div class="widget nav-selected">
+                            <a class="text-accent" href="#timetable"> Timetable</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <a href="#timetable"> Clashes</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="widget">
+
                             <a href="#user"> Users</a>
-                        </li>
-                    </ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div ng-view></div>
+                    </div>
                 </div>
-
-                <div class="widget">
-                    <h3> Key </h3>
-                    <p class="color-value-V"> Vacation </p>
-                    <p class="color-value-P"> Public Holiday </p>
-                    <p class="color-value-T"> Training </p>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div ng-view></div>
             </div>
         </div>
     </div>

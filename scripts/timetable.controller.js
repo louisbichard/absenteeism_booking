@@ -1,4 +1,6 @@
-APP.controller('timetableController', function($scope, bookingService) {
+APP.controller('timetableController', function($scope, bookingService, userService) {
+
+    $scope.current_logged_in_user = userService.get();
 
     $scope.users =
         _.chain(bookingService.read.raw())
@@ -11,7 +13,11 @@ APP.controller('timetableController', function($scope, bookingService) {
         return new Array(num);
     };
     $scope.filter = {
-        user: []
+        user: [],
+        unit: {
+            am: true,
+            pm: true
+        }
     };
 
     $scope.updateUserNumberFilter = function(subtract) {
@@ -33,8 +39,9 @@ APP.controller('timetableController', function($scope, bookingService) {
     // # EVENTS
 
     // # CALENDAR CONFIGURATION
-    $scope.events = bookingService.read.formatted();
-    $scope.eventSources = [$scope.events];
+    $scope.eventSources = [
+        []
+    ];
 
     $scope.uiConfig = {
         calendar: {
@@ -50,7 +57,14 @@ APP.controller('timetableController', function($scope, bookingService) {
     };
 
     $scope.clearFilters = function() {
-        $scope.filters = {};
+        console.log('test');
+        $scope.filterUserNumber = 1;
+        $scope.filter.user = [];
+        $scope.updateWithFilter();
+    };
+
+    $scope.newUserSelected = function() {
+        $scope.filterUserNumber++;
         $scope.updateWithFilter();
     };
 
@@ -65,9 +79,10 @@ APP.controller('timetableController', function($scope, bookingService) {
         $scope.events = temp_events;
 
         $scope.myCalendar.fullCalendar('destroy');
-        $scope.myCalendar.fullCalendar({
+        var config = {
             events: temp_events
-        });
+        };
+        $scope.myCalendar.fullCalendar(_.extend(config, $scope.uiConfig.calendar));
 
         $scope.myCalendar.fullCalendar('refetchEvents');
 

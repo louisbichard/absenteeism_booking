@@ -1,6 +1,6 @@
 APP.controller('userController', function($scope, bookingService, userService, $rootScope) {
 
-    $scope.users = _.uniq(bookingService.read(), 'name');
+    $scope.users = _.uniq(bookingService.read.raw(), 'name');
 
     $scope.$watch('selectedUser', function() {
         // UPDATE SERVICE WITH THE CHANGE
