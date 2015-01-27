@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="APP">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <!-- ================FONTS================ -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500,100,300' rel='stylesheet' type='text/css'>
+
+    <!-- ================BOOTSTRAP================ -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- ================ICONS================ -->
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+    <!-- ================CALENDAR================ -->
+    <link rel="stylesheet" type="text/css" href="bower_components/fullcalendar/dist/fullcalendar.css">
+
+    <!-- ================CUSTOM STYLES================ -->
+    <link rel="stylesheet" type="text/css" href="styles/core.css">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <title>DEMO: Absenteeism</title>
+
+</head>
+
+<body ng-controller="mainController">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Mudano recruitment demo</h2>
+                <h4> You are logged in as: {{user.first_name}} {{user.last_name}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <ul>
+                    <li>
+                        <a href="#timetable"> Timetable</a>
+                    </li>
+                    <li>
+                        <a href="#user"> Users</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================JQUERY================ -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- ================LODASH================ -->
+    <script src="bower_components/lodash/lodash.min.js"></script>
+
+    <!-- ================MOMENT================ -->
+    <script src="bower_components/moment/min/moment.min.js"></script>
+
+    <!-- ================ANGULAR CORE================ -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+
+    <!-- ================ANGULAR CUSTOM CORE================ -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/routes.js"></script>
+
+    <!-- ================ANGULAR PLUGINS================ -->
+    <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+
+    <!-- ================CONTROLLERS================ -->
+    <script type="text/javascript" src="scripts/main.controller.js"></script>
+    <script type="text/javascript" src="scripts/timetable.controller.js"></script>
+    <script type="text/javascript" src="scripts/user.controller.js"></script>
+
+    <!-- ================SERVICES================ -->
+    <script type="text/javascript" src="scripts/bookings.service.js"></script>
+    <script type="text/javascript" src="scripts/database.service.js"></script>
+
+</body>
+
+</html>

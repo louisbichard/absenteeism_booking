@@ -1,0 +1,21 @@
+// STYLE GUIDE:
+body {
+    background-color: #f3f3f3
+}
+// FULL CALENDAR
+.fc-content > .fc-time {
+    display: none;
+}
+.color-value-V {
+    color: red;
+}
+.color-value-P {
+    color: blue;
+}
+.color-value-T {
+    color: green;
+}
+.calendar-cell {
+    padding: 5px;
+    background-color: lightskyblue;
+}
