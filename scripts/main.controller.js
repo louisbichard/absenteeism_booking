@@ -169,8 +169,6 @@ APP.controller('mainController', function($scope, bookingService) {
             events: temp_events
         };
 
-        console.log(set_date);
-
         $scope.myCalendar.fullCalendar(_.extend(config, $scope.uiConfig.calendar));
 
         $scope.myCalendar.fullCalendar('refetchEvents');

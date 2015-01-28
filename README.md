@@ -15,6 +15,7 @@ A basic timetabling system built upon AngularJS and SASS for presenting user ava
 - No admin rights are provided, all users can add for all users, and all users can remove all other users events
 - User selection could be improved by addition of groups, i.e users grouped into developers, managers, etc. 
 - Most of the code is built into 1 controller, this however would be better broken down where possible into separate services/directives, however for a smaller project this seems acceptable (uncertainty of requirements make this slightly difficult) as 1 controller is easier to maintain while requirements are addressed. 
+- Animations have been added for transitions on load and when logging in
 
 ## Requirements
 
