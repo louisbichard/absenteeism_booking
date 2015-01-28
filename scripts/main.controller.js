@@ -1,22 +1,31 @@
+/**
+ * Main controller for the application
+ */
 APP.controller('mainController', function($scope, bookingService) {
 
-    // TODO: REMOVE THE OR
-    $scope.selectedUser = $scope.selectedUser;
-
-    // TODO: SET AS MOST FREQUENT FOR THAT USER
-    $scope.selectallusers = true;
-    $scope.add_event = {
-        value: "V",
-        unit: "AM"
+    // INITIALISATION PARAMETERS
+    $scope.search = {
+        selectallusers: true,
+        // DEFAULTS FOR THE ADDING EVENTS INPUTS
+        // COULD HOWEVER BE INTUITIVELY POPULATED BASED ON FREQUENCY OF TYPES/UNITS FOR THE USER
+        add_event: {
+            value: "V",
+            unit: "AM"
+        }
     };
 
-    $scope.users =
-        _.chain(bookingService.read.raw())
-        .uniq('name')
-        .sortBy('name')
-        .value();
+    // REQUIRED AS THE FULL CALENDAR DOES NOT RECOGNISE CHANGES IN THE SCOPE
+    // A FULL DESTROY AND REBUILD OF THE CALENDAR IS REQUIRED ON CHANGE
+    $scope.$watch('filter', function() {
+        $scope.redrawCalendar();
+    }, true);
+
+    // A UNIQUE, ALPHABETICALLY NAME SORTED LIST OF USERS
+    $scope.users = bookingService.read.formattedUsers();
 
     $scope.filter = {
+        // CREATE AN OBJECT OF USERS, WHERE THE PROPERTY IS THE USERNAME AND
+        // THE VALUE IS WHETHER IT SHOULD APPEAR ON THE CALENDAR UI
         user: _.reduce($scope.users, function(prev, curr) {
             prev[curr.name] = true;
             return prev;
@@ -32,9 +41,6 @@ APP.controller('mainController', function($scope, bookingService) {
         }
     };
 
-    // # EVENTS
-
-    // # CALENDAR CONFIGURATION
     $scope.eventSources = [
         bookingService.read.formatted()
     ];
@@ -43,7 +49,7 @@ APP.controller('mainController', function($scope, bookingService) {
         $scope.filter.user = _.chain($scope.filter.user)
             .map(function(user, name) {
                 var temp = {};
-                temp[name] = $scope.selectallusers;
+                temp[name] = $scope.search.selectallusers;
                 return temp;
             })
             .reduce(function(prev, curr) {
@@ -53,24 +59,45 @@ APP.controller('mainController', function($scope, bookingService) {
         $scope.redrawCalendar();
     };
 
-    $scope.addNewEvent = function(start, end) {
-        var event_details = confirm([
+    var confirmBooking = function(record_to_add) {
+        // FORMATTED ALERT MESSAGE WITH NEW LINE BREAKS
+        var message = [
             'Please confirm the following is correct for this booking: \n',
             'User: ' + $scope.selectedUser.name,
-            'Value: ' + $scope.add_event.value,
-            'Unit: ' + $scope.add_event.unit,
-        ].join('\n'));
+            'Value: ' + $scope.search.add_event.value,
+            'Unit: ' + $scope.search.add_event.unit
+        ];
 
-        if (event_details) {
-            bookingService.create({
-                "userid": $scope.selectedUser.userid,
-                "name": $scope.selectedUser.name,
-                "date": moment(start._d).format('DD/MM/YYYY'),
-                "unit": $scope.add_event.unit,
-                "value": $scope.add_event.value
-            });
+        if (bookingService.read.eventHasClash(record_to_add)) {
+            message.push('\nNote: This booking would cause a clash, are you sure you wish to continue?');
         }
-        $scope.redrawCalendar();
+
+        var confirmed = confirm(message.join('\n'));
+
+        if (confirmed) {
+            bookingService.create(record_to_add);
+            $scope.redrawCalendar();
+        }
+    };
+
+    // NEW EVENT TRIGGERED BY CLICKING ON DAY EVENT CELLS
+    $scope.addNewEvent = function(start, end) {
+
+        var record_to_add = {
+            "userid": $scope.selectedUser.userid,
+            "name": $scope.selectedUser.name,
+            "date": moment(start._d)
+                .format('DD/MM/YYYY'),
+            "unit": $scope.search.add_event.unit,
+            "value": $scope.search.add_event.value
+        };
+
+        // VALIDATE THAT THE ENTRY DOESN'T ALREADY EXIST
+        if (bookingService.read.eventExists(record_to_add)) {
+            alert('This booking already exists, please alter your criteria or choose an alternate date');
+        } else {
+            confirmBooking(record_to_add);
+        }
 
     };
 
@@ -91,21 +118,6 @@ APP.controller('mainController', function($scope, bookingService) {
                 right: 'today prev,next'
             }
         }
-    };
-
-    $scope.filterUser = function(user) {
-        var index = _.findIndex($scope.filter.user, function(chr) {
-            return user === chr;
-        });
-
-        // IF NOT ALREADY IN ARRAY
-        if (index === -1) {
-            $scope.filter.user.push(user);
-        } else {
-            $scope.filter.user.splice(index, 1);
-        }
-        $scope.redrawCalendar();
-
     };
 
     var filterByUser = function(filter, curr) {
@@ -148,12 +160,5 @@ APP.controller('mainController', function($scope, bookingService) {
         $scope.myCalendar.fullCalendar('refetchEvents');
 
     };
-
-    $scope.$watch('filter', function() {
-        console.log('test');
-
-        $scope.redrawCalendar();
-
-    }, true);
 
 });

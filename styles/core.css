@@ -33,11 +33,12 @@ body {
 .widget {
   background-color: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
-  margin-bottom: 20px; }
+  margin-bottom: 15px; }
   .widget .widget-header {
     padding: 1px;
     padding-left: 10px;
     padding-top: 10px;
+    padding-right: 10px;
     color: #FFF;
     background-color: #B428FF; }
   .widget .widget-body {
@@ -65,5 +66,8 @@ a.fc-day-grid-event.fc-event.fc-start.fc-end.calendar-cell.event-clash.fc-dragga
 
 td.fc-widget-content {
   cursor: pointer; }
+
+.fc-toolbar .fc-button.fc-state-default {
+  border-radius: 0px; }
 
 /*# sourceMappingURL=core.css.map */

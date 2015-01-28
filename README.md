@@ -6,19 +6,21 @@ A basic timetabling system built upon AngularJS and SASS for presenting user ava
 
 - Has been tested only in 'mdoern browsers'
 - Not 100% mobile/tablet/small device optimised
+- Colour codes are not taking into account colourblind users, better choices could be made for improved accessibility
+- Alerts/Prompts are used, but these could be removed in future with modals or something more aesthetic if required
+- Colour is quite heavily used in the UI, a good future improvement would be divide the cells into AM and PM, however this is not possible easily with the current used plugin and would require more work than is in scope for this taks
 
 ## Requirements
 
 ✓ __The user should be able to mark time as “Present”, “Vacation”, “Public Holiday”, “Training”__ 'Present' is assumed default.
 
- __All categories other than “Present” are classified as Absent__
+✓ __All categories other than “Present” are classified as Absent__
 
 ✓ __Weekends should be ignored by the system (not displayed and no classification should be given)__
 
-✓ __The system should work on units of half days__ Each item added is added as either AM or PM. This is denoted through colours defined in the colour key. At the time of writing, blue denotes AM and pink denotes PM. 
+✓ __The system should work on units of half days__ Each item added is added as either AM or PM. This is denoted through colours defined in the colour key. At the time of writing, blue denotes AM and pink denotes PM. The system also validates against this. 
 
-__The default for days should be “Present” other than Public Holidays__
-
+✓ __The default for days should be “Present” other than Public Holidays__
 
 __Public Holidays should be defaulted to “Public Holiday” however should be able to be changed to any of the other categories__
 
@@ -32,13 +34,9 @@ __Public Holidays should be defaulted to “Public Holiday” however should be 
 
 ✓ __It is not required that all 12 months must be shown at the same time and the interface should be optimised for the most common use case (Vacation and training to be added within the next 3 months)__ 1 month shown at a time, this was assumed optimal for screen sizings etc.
 
-✓ __User can select a relevant time to book absence__
+✓ __User can select a relevant time to book absence/User can input absence__ Selected by clicking on dates
 
-✓ __User can Input absence__
+✓__User can get feedback on clashes of input absence (can be automatic if required)__ 
 
-✓__User can get feedback on clashes of input absence (can be automatic if required)__
-
-✓__Save (can be automatic if required)__
-
-# Requirements questions
+✓__Save (can be automatic if required)__ Automatic saving
 

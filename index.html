@@ -58,16 +58,16 @@
                                         </div>
                                         <div class="widget-body">
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>V</label>
+                                                <div class="col-md-12">
+                                                    <label class="color-value-V">Vacation (V)</label>
                                                     <input ng-model="filter.value.V" type="checkbox" name="vehicle">
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <label>P</label>
+                                                <div class="col-md-12">
+                                                    <label class="color-value-P">Public Holiday (P)</label>
                                                     <input ng-model="filter.value.P" type="checkbox" name="vehicle">
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <label>T</label>
+                                                <div class="col-md-12">
+                                                    <label class="color-value-T">Training (T)</label>
                                                     <input ng-model="filter.value.T" type="checkbox" name="vehicle">
                                                 </div>
                                             </div>
@@ -101,11 +101,12 @@
                                 <div class="col-md-12">
                                     <div class="widget scroll-large">
                                         <div class="widget-header">
-                                            <p> Users </p>
+                                            <p> Users
+                                                <span class="pull-right">&nbsp; Select all  </span>
+                                                <input class="pull-right" ng-click="selectAllUsers()" ng-model="search.selectallusers" type="checkbox" name="vehicle">
+                                            </p>
                                         </div>
                                         <div class="widget-body">
-                                            <label> Select all users </label>
-                                            <input class="pull-right" ng-click="selectAllUsers()" ng-model="selectallusers" type="checkbox" name="vehicle">
                                             <table class="table">
                                                 <thead>
                                                     <th>ID</th>
@@ -142,14 +143,14 @@
                                 <div class="widget-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <select ng-model="add_event.value" class="form-control">
+                                            <select ng-model="search.add_event.value" class="form-control">
                                                 <option value="V"> Vacation (V) </option>
                                                 <option value="P"> Public Holiday (P) </option>
                                                 <option value="T"> T something (T) </option>
                                             </select>
                                         </div>
                                         <div class="col-md-6">
-                                            <select ng-model="add_event.unit" class="form-control">
+                                            <select ng-model="search.add_event.unit" class="form-control">
                                                 <option value="AM"> AM </option>
                                                 <option value="PM"> PM </option>
                                             </select>
@@ -163,18 +164,6 @@
                                     <br>
                                     <div class="row text-center">
                                         <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <p class="color-value-V"> Vacation (V) </p>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <p class="color-value-P"> Public Holiday (P) </p>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <p class="color-value-T"> Training (T) </p>
-                                                </div>
-                                            </div>
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <p class="calendar-unit-AM"> AM </p>

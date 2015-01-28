@@ -7,9 +7,11 @@ body {
     font-weight: 300;
 }
 // FULL CALENDAR
+// HIDE THE MONTH TABS ON THE LEFT
 .fc-content > .fc-time {
     display: none;
 }
+//
 .color-value-V {
     color: red;
 }
@@ -41,11 +43,12 @@ body {
 .widget {
     background-color: white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     .widget-header {
         padding: 1px;
         padding-left: 10px;
         padding-top: 10px;
+        padding-right: 10px;
         color: #FFF;
         background-color: $color-primary-dark;
     }
@@ -74,10 +77,16 @@ body {
     overflow-y: auto;
     height: 400px;
 }
+// CLASHES 
 a.fc-day-grid-event.fc-event.fc-start.fc-end.calendar-cell.event-clash.fc-draggable {
     border-color: red;
     border-right-width: 20px;
 }
 td.fc-widget-content {
     cursor: pointer;
+}
+.fc-toolbar {
+    .fc-button.fc-state-default {
+        border-radius: 0px;
+    }
 }
