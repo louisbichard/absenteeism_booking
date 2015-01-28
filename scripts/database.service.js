@@ -1,5 +1,11 @@
 APP.service("databaseService", function() {
     this.database = [{
+        "userid": 50,
+        "name": "Lou Bichard",
+        "date": "25/05/2017",
+        "unit": "AM",
+        "value": "V"
+    }, {
         "userid": 1,
         "name": "Matthew Webb",
         "date": "06/10/2014",

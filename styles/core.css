@@ -27,13 +27,21 @@ body {
 .fc-toolbar .fc-left {
   display: none; }
 
+.fc-view-container .fc-event {
+  border-width: 0px; }
+
 .widget {
   background-color: white;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  border-color: #e9e9e9;
-  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
   margin-bottom: 20px; }
+  .widget .widget-header {
+    padding: 1px;
+    padding-left: 10px;
+    padding-top: 10px;
+    color: #FFF;
+    background-color: #B428FF; }
+  .widget .widget-body {
+    padding: 20px; }
 
 .widget.nav-selected {
   border-bottom-color: #FFCA28;
@@ -46,5 +54,16 @@ body {
   background-color: #B428FF; }
   .panel-group .panel-default .panel-heading .panel-title {
     color: white; }
+
+.scroll-large {
+  overflow-y: auto;
+  height: 600px; }
+
+a.fc-day-grid-event.fc-event.fc-start.fc-end.calendar-cell.event-clash.fc-draggable {
+  border-color: red;
+  border-right-width: 20px; }
+
+td.fc-widget-content {
+  cursor: pointer; }
 
 /*# sourceMappingURL=core.css.map */

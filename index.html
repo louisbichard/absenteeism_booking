@@ -32,69 +32,170 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="text-center">Mudano Recruitment Demo</h2>
+                <br>
                 <div class="row">
-
                     <div class="col-md-4">
-                        <div class="widget nav-selected">
-                            <a class="text-accent" href="#timetable"> Timetable</a>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="widget">
+                                        <div class="widget-header">
+                                            <p> Login </p>
+                                        </div>
+                                        <div class="widget-body">
+                                            <select ng-model="selectedUser" class="form-control" ng-model="correctlySelected" ng-options="opt as opt.name for opt in users">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="widget">
+                                        <div class="widget-header">
+                                            <p> Time of day (unit) </p>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>AM</label>
+                                                    <input ng-model="filter.unit.AM" type="checkbox" name="vehicle">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>PM</label>
+                                                    <input ng-model="filter.unit.PM" type="checkbox" name="vehicle">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="widget scroll-large">
+                                        <div class="widget-header">
+                                            <p> Users </p>
+                                        </div>
+                                        <div class="widget-body">
+                                            <label> Select all users </label>
+                                            <input class="pull-right" ng-click="selectAllUsers()" ng-model="selectallusers" type="checkbox" name="vehicle">
+                                            <table class="table">
+                                                <thead>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Show</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="user in users">
+                                                        <td>{{user.userid}}</td>
+                                                        <td>{{user.name}}</td>
+                                                        <td>
+                                                            <input ng-model="filter.user[user.name]" type="checkbox">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <div class="widget">
-                            <a href="#timetable"> Clashes</a>
-                        </div>
-                    </div>
+                            <div ng-hide="selectedUser">
+                                <div class="widget-body">
+                                    <p class="text-center"> Please login to begin </p>
+                                </div>
+                            </div>
+                            <div ng-hide="!selectedUser">
+                                <div class="widget-header">
+                                    <p> Results ({{total_events}}) </p>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <select ng-model="add_event.value" class="form-control">
+                                                <option value="V"> Vacation (V) </option>
+                                                <option value="P"> Public Holiday (P) </option>
+                                                <option value="T"> T something (T) </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select ng-model="add_event.unit" class="form-control">
+                                                <option value="AM"> AM </option>
+                                                <option value="PM"> PM </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
 
-                    <div class="col-md-4">
-                        <div class="widget">
+                                    <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar">
+                                    </div>
+                                    <!-- KEY FOR THE CALENDAR -->
+                                    <br>
+                                    <div class="row text-center">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <p class="color-value-V"> Vacation (V) </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="color-value-P"> Public Holiday (P) </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="color-value-T"> Training (T) </p>
+                                                </div>
+                                            </div>
 
-                            <a href="#user"> Users</a>
-                            </ul>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="calendar-unit-AM"> AM </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="calendar-unit-PM"> PM </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div ng-view></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- ================JQUERY================ -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- ================JQUERY================ -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- ================LODASH================ -->
-    <script src="bower_components/lodash/lodash.min.js"></script>
+        <!-- ================LODASH================ -->
+        <script src="bower_components/lodash/lodash.min.js"></script>
 
-    <!-- ================MOMENT================ -->
-    <script src="bower_components/moment/min/moment.min.js"></script>
+        <!-- ================MOMENT================ -->
+        <script src="bower_components/moment/min/moment.min.js"></script>
 
-    <!-- ================ANGULAR CORE================ -->
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <!-- ================ANGULAR CORE================ -->
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
 
-    <!-- ================ANGULAR CUSTOM CORE================ -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/routes.js"></script>
+        <!-- ================ANGULAR CUSTOM CORE================ -->
+        <script src="scripts/app.js"></script>
 
-    <!-- ================ANGULAR PLUGINS================ -->
-    <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-    <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
-    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <!-- ================ANGULAR PLUGINS================ -->
+        <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+        <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+        <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
-    <!-- ================CONTROLLERS================ -->
-    <script type="text/javascript" src="scripts/main.controller.js"></script>
-    <script type="text/javascript" src="scripts/timetable.controller.js"></script>
-    <script type="text/javascript" src="scripts/user.controller.js"></script>
+        <!-- ================CONTROLLERS================ -->
+        <script type="text/javascript" src="scripts/main.controller.js"></script>
 
-    <!-- ================SERVICES================ -->
-    <script type="text/javascript" src="scripts/bookings.service.js"></script>
-    <script type="text/javascript" src="scripts/user.service.js"></script>
-    <script type="text/javascript" src="scripts/database.service.js"></script>
+        <!-- ================SERVICES================ -->
+        <script type="text/javascript" src="scripts/bookings.service.js"></script>
+        <script type="text/javascript" src="scripts/database.service.js"></script>
 
 </body>
 

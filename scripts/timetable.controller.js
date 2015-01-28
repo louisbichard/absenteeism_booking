@@ -1,6 +1,13 @@
 APP.controller('timetableController', function($scope, bookingService, userService) {
 
-    $scope.current_logged_in_user = userService.get();
+    // TODO: REMOVE THE OR
+    $scope.selectedUser = $scope.selectedUser;
+
+    // TODO: SET AS MOST FREQUENT FOR THAT USER
+    $scope.add_event = {
+        value: "V",
+        unit: "AM"
+    };
 
     $scope.users =
         _.chain(bookingService.read.raw())
@@ -8,10 +15,6 @@ APP.controller('timetableController', function($scope, bookingService, userServi
         .sortBy('name')
         .value();
 
-    $scope.filterUserNumber = 1;
-    $scope.getNumber = function(num) {
-        return new Array(num);
-    };
     $scope.filter = {
         user: [],
         unit: {
@@ -20,20 +23,8 @@ APP.controller('timetableController', function($scope, bookingService, userServi
         }
     };
 
-    $scope.updateUserNumberFilter = function(subtract) {
-        $scope.filterUserNumber++;
-    };
-
-    $scope.removeUserFilterField = function(idx) {
-        $scope.filter.user.splice(idx, 1);
-        $scope.filterUserNumber--;
-        $scope.updateWithFilter();
-    };
-
     var filterByUser = function(filter, curr) {
-        return !!_.find(filter.val, {
-            name: curr[filter.prop]
-        });
+        return (filter.val.indexOf(curr.name) > -1);
     };
 
     // # EVENTS
@@ -43,11 +34,35 @@ APP.controller('timetableController', function($scope, bookingService, userServi
         []
     ];
 
+    $scope.addNewEvent = function(start, end) {
+        var event_details = confirm([
+            'Please confirm the following is correct for this booking, then enter a title: \n',
+            'User: ' + $scope.selectedUser.name,
+            'Value: ' + $scope.add_event.value,
+            'Unit: ' + $scope.add_event.unit,
+        ].join('\n'));
+
+        if (event_details) {
+            bookingService.create({
+                "userid": $scope.selectedUser.userid,
+                "name": $scope.selectedUser.name,
+                "date": moment(start._d).format('DD/MM/YYYY'),
+                "unit": $scope.add_event.unit,
+                "value": $scope.add_event.value
+            });
+        }
+        $scope.updateWithFilter();
+
+    };
+
     $scope.uiConfig = {
         calendar: {
             weekends: false,
+            selectable: true,
             height: 700,
-            editable: true,
+
+            selectHelper: true,
+            select: $scope.addNewEvent,
             header: {
                 left: 'month',
                 center: 'title',
@@ -56,16 +71,19 @@ APP.controller('timetableController', function($scope, bookingService, userServi
         }
     };
 
-    $scope.clearFilters = function() {
-        console.log('test');
-        $scope.filterUserNumber = 1;
-        $scope.filter.user = [];
-        $scope.updateWithFilter();
-    };
+    $scope.filterUser = function(user) {
+        var index = _.findIndex($scope.filter.user, function(chr) {
+            return user === chr;
+        });
 
-    $scope.newUserSelected = function() {
-        $scope.filterUserNumber++;
+        // IF NOT ALREADY IN ARRAY
+        if (index === -1) {
+            $scope.filter.user.push(user);
+        } else {
+            $scope.filter.user.splice(index, 1);
+        }
         $scope.updateWithFilter();
+
     };
 
     $scope.updateWithFilter = function() {
