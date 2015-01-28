@@ -9,6 +9,10 @@ A basic timetabling system built upon AngularJS and SASS for presenting user ava
 - Colour codes are not taking into account colourblind users, better choices could be made for improved accessibility
 - Alerts/Prompts are used, but these could be removed in future with modals or something more aesthetic if required
 - Colour is quite heavily used in the UI, a good future improvement would be divide the cells into AM and PM, however this is not possible easily with the current used plugin and would require more work than is in scope for this taks
+- The system has dragging functionality for events, however this has not been added due to the added complexity, but could be a future extension so that bookings can be made easily for long periods of time. 
+- No unit tests are provided, so functionality will be largely unstable
+- There is no 'updating' of tasks, they are only created or destroyed, this is how the 'update' functionality is provided. 
+- No admin rights are provided, all users can add for all users, and all users can remove all other users events
 
 ## Requirements
 

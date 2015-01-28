@@ -101,15 +101,22 @@ APP.controller('mainController', function($scope, bookingService) {
 
     };
 
+    var deleteEventBooking = function(record) {
+        var confirm_delete = confirm('Are you sure you want to delete this record?');
+        if (confirm_delete) {
+            var to_delete = _.pick(record, ['userid', 'date', 'value', 'unit', 'name']);
+            bookingService.delete(to_delete);
+            $scope.redrawCalendar();
+        }
+    };
+
     $scope.uiConfig = {
         calendar: {
             weekends: false,
             selectable: true,
             height: 600,
             eventLimit: true,
-            eventClick: function(calEvent, jsEvent, view) {
-                console.log('event click');
-            },
+            eventClick: deleteEventBooking,
             selectHelper: true,
             select: $scope.addNewEvent,
             header: {
@@ -149,12 +156,19 @@ APP.controller('mainController', function($scope, bookingService) {
             .value();
 
         $scope.events = temp_events;
+
+        // USED FOR DISPLAYING THE NUMBER OF RESULTS
         $scope.total_events = temp_events.length;
 
         $scope.myCalendar.fullCalendar('destroy');
+
         var config = {
-            events: temp_events
+            events: temp_events,
+            gotoDate: new moment()
+                .add(4, 'months')
+                ._d
         };
+
         $scope.myCalendar.fullCalendar(_.extend(config, $scope.uiConfig.calendar));
 
         $scope.myCalendar.fullCalendar('refetchEvents');

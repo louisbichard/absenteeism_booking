@@ -9,21 +9,19 @@ APP.service("bookingService", function(databaseService) {
         var m = date_split[1];
         var y = date_split[2];
 
-        return {
-            name: curr.name,
+        return _.extend({
             title: curr.name,
             start: y + "-" + m + "-" + d,
             // NOTE: SUBTRACT ONE FROM THE MONTH AS JANUARY IS CONSIDERED 00 NOT 01 BY FULLCALENDAR PLUGIN
             end: y + "-" + (m - 1) + "-" + d,
             editable: true,
-            value: curr.value,
-            unit: curr.unit,
+            // CLASSES ADDED FOR CONDITIONAL FORMATTING
             className: [
                 'color-value-' + curr.value,
                 'calendar-cell',
                 'calendar-unit-' + curr.unit
             ],
-        };
+        }, curr);
     };
 
     var establishClashes = function(curr, idx, original) {
@@ -111,10 +109,19 @@ APP.service("bookingService", function(databaseService) {
 
     this.create = function(event) {
         // INTENTIONAL CONSOLE LOG AS PER REQUIREMENTS
-        console.log('EXAMPLE SERVER UPDATE REQUEST', event);
+        console.log('EXAMPLE SERVER UPDATE REQUEST', '(CREATE)', event);
 
         // TODO: SANITISISE AND MAKE SURE IT DOESN'T ALREADY EXIST
         databaseService.database.push(event);
+    };
+
+    this.delete = function(record) {
+        // INTENTIONAL CONSOLE LOG AS PER REQUIREMENTS
+        console.log('EXAMPLE SERVER UPDATE REQUEST', '(DELETE)', event);
+
+        var index = _.findIndex(this.read.raw(), record);
+
+        databaseService.database.splice(index, 1);
     };
 
 });
