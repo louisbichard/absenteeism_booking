@@ -13,6 +13,7 @@ A basic timetabling system built upon AngularJS and SASS for presenting user ava
 - No unit tests are provided, so functionality will be largely unstable
 - There is no 'updating' of tasks, they are only created or destroyed, this is how the 'update' functionality is provided. 
 - No admin rights are provided, all users can add for all users, and all users can remove all other users events
+- User selection could be improved by addition of groups, i.e users grouped into developers, managers, etc. 
 
 ## Requirements
 
