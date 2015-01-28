@@ -18,6 +18,9 @@
     <!-- ================CALENDAR================ -->
     <link rel="stylesheet" type="text/css" href="bower_components/fullcalendar/dist/fullcalendar.css">
 
+    <!-- ================ANIMATIONS================ -->
+    <link rel="stylesheet" type="text/css" href="styles/animate.css">
+
     <!-- ================CUSTOM STYLES================ -->
     <link rel="stylesheet" type="text/css" href="styles/core.css">
 
@@ -38,7 +41,7 @@
                         <div class="row">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="widget">
+                                    <div class="widget animated slideInLeft">
                                         <div class="widget-header">
                                             <p> Login </p>
                                         </div>
@@ -52,7 +55,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="widget">
+                                    <div class="widget animated slideInLeft">
                                         <div class="widget-header">
                                             <p> Value </p>
                                         </div>
@@ -78,7 +81,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="widget">
+                                    <div class="widget animated slideInLeft">
                                         <div class="widget-header">
                                             <p> Time of day (unit) </p>
                                         </div>
@@ -99,7 +102,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="widget scroll-large">
+                                    <div class="widget scroll-large animated slideInLeft">
                                         <div class="widget-header">
                                             <p> Users
                                                 <span class="pull-right">&nbsp; Select all  </span>
@@ -130,11 +133,10 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="widget">
-                            <div ng-hide="selectedUser">
+                        <div ng-hide="selectedUser">
+                            <div class="widget animated slideInUp">
                                 <div class="widget-body">
                                     <h3 class="text-center"> Please login to begin </h3>
-
                                     <div class="alert alert-info" role="alert">
                                         <h4>Adding</h4>
                                         <ol>
@@ -145,11 +147,11 @@
                                         <h4>Deleting</h4>
                                         <p> Click dates in the calendar to remove bookings</p>
                                     </div>
-
-
                                 </div>
                             </div>
-                            <div ng-hide="!selectedUser">
+                        </div>
+                        <div ng-hide="!selectedUser">
+                            <div class="widget  animated slideInUp">
                                 <div class="widget-header">
                                     <p> Results ({{total_events}}) </p>
                                 </div>
