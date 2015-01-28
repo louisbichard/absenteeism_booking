@@ -32,10 +32,13 @@ __Public Holidays should be defaulted to “Public Holiday” however should be 
 
 ✓ __It is not required that all 12 months must be shown at the same time and the interface should be optimised for the most common use case (Vacation and training to be added within the next 3 months)__ 1 month shown at a time, this was assumed optimal for screen sizings etc.
 
+✓ __User can select a relevant time to book absence__
+
+✓ __User can Input absence__
+
+✓__User can get feedback on clashes of input absence (can be automatic if required)__
+
+✓__Save (can be automatic if required)__
+
 # Requirements questions
 
-I am assuming that a clash is assumed if there is another booking (of any kind, from any user, including themselves) within 4 days of any given booking. 
-
-Are duplicates allowed, should i validate this? 
-
-Do you want to allow a user to select dates that cause clashes? By my definition nearly all sample data causes clashes. 

@@ -16,6 +16,7 @@ APP.service("bookingService", function(databaseService) {
             start: y + "-" + m + "-" + d,
             end: y + "-" + (m - 1) + "-" + d,
             editable: true,
+            value: curr.value,
             unit: curr.unit,
             className: [
                 'color-value-' + curr.value,

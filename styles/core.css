@@ -57,7 +57,7 @@ body {
 
 .scroll-large {
   overflow-y: auto;
-  height: 600px; }
+  height: 400px; }
 
 a.fc-day-grid-event.fc-event.fc-start.fc-end.calendar-cell.event-clash.fc-draggable {
   border-color: red;

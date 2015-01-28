@@ -21,6 +21,11 @@ APP.controller('mainController', function($scope, bookingService) {
             prev[curr.name] = true;
             return prev;
         }, {}),
+        value: {
+            "V": true,
+            "P": true,
+            "T": true
+        },
         unit: {
             "AM": true,
             "PM": true
@@ -111,6 +116,10 @@ APP.controller('mainController', function($scope, bookingService) {
         return !!filter.val[curr.unit];
     };
 
+    var filterByValue = function(filter, curr) {
+        return !!filter.val[curr.value];
+    };
+
     $scope.redrawCalendar = function() {
         var temp_events = _.chain(bookingService.read.formatted())
             .filter(_.partial(filterByUser, {
@@ -120,6 +129,10 @@ APP.controller('mainController', function($scope, bookingService) {
             .filter(_.partial(filterByUnit, {
                 val: $scope.filter.unit,
                 prop: 'unit'
+            }))
+            .filter(_.partial(filterByValue, {
+                val: $scope.filter.value,
+                prop: 'value'
             }))
             .value();
 
