@@ -111,7 +111,6 @@ APP.service("bookingService", function(databaseService) {
         // INTENTIONAL CONSOLE LOG AS PER REQUIREMENTS
         console.log('EXAMPLE SERVER UPDATE REQUEST', '(CREATE)', event);
 
-        // TODO: SANITISISE AND MAKE SURE IT DOESN'T ALREADY EXIST
         databaseService.database.push(event);
     };
 

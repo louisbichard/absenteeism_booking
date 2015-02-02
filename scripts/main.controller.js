@@ -160,20 +160,23 @@ APP.controller('mainController', function($scope, bookingService) {
         // USED FOR DISPLAYING THE NUMBER OF RESULTS
         $scope.total_events = temp_events.length;
 
-        // STORES THE CURRENT DATE IN VIEW, SO RE RENDERS ON THE SAME VIEW TO PREVENT DEFAULTING TO CURRENT DATE
-        var set_date = $scope.myCalendar.fullCalendar('getDate');
+        if ($scope.myCalendar) {
 
-        $scope.myCalendar.fullCalendar('destroy');
+            // STORES THE CURRENT DATE IN VIEW, SO RE RENDERS ON THE SAME VIEW TO PREVENT DEFAULTING TO CURRENT DATE
+            var set_date = $scope.myCalendar.fullCalendar('getDate');
 
-        var config = {
-            events: temp_events
-        };
+            $scope.myCalendar.fullCalendar('destroy');
 
-        $scope.myCalendar.fullCalendar(_.extend(config, $scope.uiConfig.calendar));
+            var config = {
+                events: temp_events
+            };
 
-        $scope.myCalendar.fullCalendar('refetchEvents');
+            $scope.myCalendar.fullCalendar(_.extend(config, $scope.uiConfig.calendar));
 
-        $scope.myCalendar.fullCalendar('gotoDate', set_date);
+            $scope.myCalendar.fullCalendar('refetchEvents');
+
+            $scope.myCalendar.fullCalendar('gotoDate', set_date);
+        }
 
     };
 
